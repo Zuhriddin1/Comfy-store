@@ -1,6 +1,9 @@
 import { NavLink, Link } from "react-router-dom";
 import { SlBasket } from "react-icons/sl";
+import { useContext } from "react";
+import { ThemeContext } from "../App";
 function Header() {
+  const theme = useContext(ThemeContext);
   return (
     <div>
       <div className=" flex translate-y-2 justify-end mt-2 mr-44 gap-7 ">
@@ -9,11 +12,9 @@ function Header() {
           className="p-0   rounded-full hover:underline"
         >
           Register
-          {/* {t("Register")} */}
         </NavLink>
         <NavLink className=" p-0  hover:underline rounded-full" to={"/login"}>
           Log in
-          {/* {t("LogIn")} */}
         </NavLink>
       </div>
       <div className="mt-5 pt-4 pb-4  flex bg-slate-100 dark:bg-gray-900 items-center">
@@ -26,25 +27,21 @@ function Header() {
           <Link to={"/"}>
             <li className="p-4 rounded-xl  hover:bg-gray-800 ml-[280px] hover:dark:bg-gray-600">
               Home
-              {/* {t("Home")} */}
             </li>
           </Link>
           <NavLink to={"/about"}>
             <li className="p-4 rounded-xl  hover:bg-gray-800 hover:dark:bg-gray-600">
               About
-              {/* {t("About")} */}
             </li>
           </NavLink>
           <NavLink to={"/products"}>
             <li className="p-4 rounded-xl  hover:bg-gray-800 hover:dark:bg-gray-600">
               Products
-              {/* {t("Products")} */}
             </li>
           </NavLink>
           <NavLink to={"/basket"}>
             <li className="p-4  rounded-xl hover:bg-gray-800 hover:dark:bg-gray-600">
               Card
-              {/* {t("Card")} */}
             </li>
           </NavLink>
         </ul>
@@ -54,17 +51,25 @@ function Header() {
               type="checkbox"
               className="theme-controller"
               value="synthwave"
+              onClick={(e) => {
+                if (e.target.checked) {
+                  theme.setTheme("dark");
+                  localStorage.setItem("theme", "dark");
+                } else {
+                  theme.setTheme("light");
+                  localStorage.setItem("theme", "light");
+                }
+              }}
             />
-
             <svg
-              className="swap-off fill-current w-10 h-10"
+              className="swap-off fill-current w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
               <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
             </svg>
             <svg
-              className="swap-on fill-current w-10 h-10"
+              className="swap-on fill-current w-6 h-6"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
