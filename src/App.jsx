@@ -11,6 +11,7 @@ import Chekout from "./pages/Chekout";
 import Orders from "./pages/Orders";
 import Layout from "./layout";
 import { createContext, useEffect, useState } from "react";
+import Basket from "./pages/Basket";
 export const ThemeContext = createContext(null);
 function App() {
   const [theme, setTheme] = useState("dark");
@@ -79,6 +80,14 @@ function App() {
           ></Route>
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
+          <Route
+            path="/basket"
+            element={
+              <Layout>
+                  <Basket></Basket>
+              </Layout>
+            }
+          ></Route>
           <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
           <Route
             path="/checkout"

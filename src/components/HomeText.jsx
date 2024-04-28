@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../App";
 function HomeText() {
+  const theme = useContext(ThemeContext);
   return (
     <div>
-      <div className="ml-56 mt-40 max-w-2xl">
-        <h1 className="text-6xl font-semibold text-white">
+      <div
+        className={`ml-56 mt-40 max-w-2xl ${
+          theme.theme == "light" ? "text-black" : "text-white"
+        }`}
+      >
+        <h1
+          className={`text-6xl font-semibold  ${
+            theme.theme == "light" ? "text-black" : "text-white"
+          }`}
+        >
           We are changing <br />
           the way people shop <br />
         </h1>
